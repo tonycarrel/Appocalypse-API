@@ -65,4 +65,19 @@ public class survivorController {
         List<survivor> uninfectedSurvivors = survivorService.getSurvivorsByInfectedStatus(false);
         return new ResponseEntity<>(uninfectedSurvivors, HttpStatus.OK);
     }
+
+
+    // Endpoint to get percentage of infected survivors
+    @GetMapping("/infectedPercentage")
+    public ResponseEntity<Double> getInfectedSurvivorPercentage() {
+        double percentage = survivorService.getInfectedSurvivorPercentage();
+        return new ResponseEntity<>(percentage, HttpStatus.OK);
+    }
+
+    // Endpoint to get percentage of uninfected survivors
+    @GetMapping("/uninfectedPercentage")
+    public ResponseEntity<Double> getUninfectedSurvivorPercentage() {
+        double percentage = survivorService.getUninfectedSurvivorPercentage();
+        return new ResponseEntity<>(percentage, HttpStatus.OK);
+    }
 }
