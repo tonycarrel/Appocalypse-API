@@ -1,5 +1,8 @@
 package com.doomsDay.doomsDay.Repository;
-import com.doomsDay.doomsDay.entity.infectedSurvivor;
+import com.doomsDay.doomsDay.entity.unInfectedSurvivor;
 import org.springframework.data.jpa.repository.JpaRepository;
-public interface infectedSurvivorRepository extends JpaRepository<infectedSurvivor, String > {
+import org.springframework.data.jpa.repository.JpaRepository.*;
+
+
+public interface unInfectedSurvivors extends JpaRepository<unInfectedSurvivor, Integer> {
 }
