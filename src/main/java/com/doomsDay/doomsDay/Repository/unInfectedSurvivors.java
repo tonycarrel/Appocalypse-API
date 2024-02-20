@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaRepository.*;
 
 
-public interface unInfectedSurvivors extends JpaRepository<unInfectedSurvivor, String> {
+public interface unInfectedSurvivors extends JpaRepository<unInfectedSurvivor, Integer> {
 }
