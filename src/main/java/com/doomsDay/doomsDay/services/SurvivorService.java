@@ -29,6 +29,7 @@ public class SurvivorService {
         return survivorRepository.save(survivor);
     }
 
+    //update survivor location
     public survivor updateSurvivorLastLocation(Long id, Point newLocation) {
         Optional<survivor> optionalSurvivor = survivorRepository.findById(id);
 
@@ -36,15 +37,9 @@ public class SurvivorService {
             survivor existingSurvivor = optionalSurvivor.get();
             existingSurvivor.setLastLocation(newLocation);
             return survivorRepository.save(existingSurvivor);
-        } else {
-
-            //add to uninfected survivor table
-
         }
         return null;
     }
-
-
 
 
     //Retrieves survivors with a specific infected status from the database.
@@ -53,5 +48,35 @@ public class SurvivorService {
         return survivorRepository.findByInfectedStatus(infectedStatus);
     }
 
+    //percentage of infected survivors
 
+    public double getInfectedSurvivorPercentage(){
+
+        List<survivor> allSurvivors = getAllSurvivors();
+        long totalSurvivors = allSurvivors.size();
+
+        if (totalSurvivors == 0){
+
+            return 0.0;
+        }
+
+        long InfectedSurvivors = allSurvivors.stream().filter(survivor::isInfectedStatus).count();
+        return (double)  InfectedSurvivors / totalSurvivors * 100;
+    }
+
+    //percentage of uninfected survivors
+
+
+    public double getUninfectedSurvivorPercentage(){
+        List<survivor> allSurvivors = getAllSurvivors();
+        long totalSurvivors = allSurvivors.size();
+
+        if (totalSurvivors ==0){
+            return 0.0;
+            
+        }
+
+        long uninfectedSurvivors = allSurvivors.stream().filter(survivor::isInfectedStatus).count();
+        return (double) uninfectedSurvivors / totalSurvivors * 100;
+    }
 }
